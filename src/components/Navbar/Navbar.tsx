@@ -1,13 +1,12 @@
-// src/components/NavBar.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const NavBar: React.FC = () => {
   return (
-    <nav>
+    <nav className="navbar">
       <ul>
         <li>
-          <Link to="/">Search</Link>
+          <Link to="/">Open Libary</Link>
         </li>
         <li>
           <Link to="/favorites">Favorites</Link>

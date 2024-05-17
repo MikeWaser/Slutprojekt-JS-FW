@@ -1,21 +1,5 @@
-import React, { createContext, useReducer, useContext, ReactNode } from 'react';
-
-interface Book {
-  id: string;
-  title: string;
-  author: string;
-  [key: string]: any;
-}
-
-interface State {
-  favoriteBooks: Book[];
-  readBooks: Book[];
-}
-
-interface Action {
-  type: string;
-  payload: any;
-}
+import React, { createContext, useReducer, useContext, ReactNode, useEffect } from 'react';
+import { State, Action } from '../types';
 
 const GlobalStateContext = createContext<{
   state: State;
@@ -29,10 +13,12 @@ const initialState: State = {
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
+    case 'LOAD_STATE':
+      return { ...state, ...action.payload };
     case 'ADD_FAVORITE':
       return { ...state, favoriteBooks: [...state.favoriteBooks, action.payload] };
     case 'REMOVE_FAVORITE':
-      return { ...state, favoriteBooks: state.favoriteBooks.filter(book => book.id !== action.payload) };
+      return { ...state, favoriteBooks: state.favoriteBooks.filter(book => book.key !== action.payload) };
     case 'ADD_READ_BOOK':
       return { ...state, readBooks: [...state.readBooks, action.payload] };
     default:
@@ -42,6 +28,28 @@ const reducer = (state: State, action: Action): State => {
 
 export const GlobalStateProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // Load state from localStorage
+  useEffect(() => {
+    const storedFavorites = localStorage.getItem('favoriteBooks');
+    const storedReadBooks = localStorage.getItem('readBooks');
+    if (storedFavorites || storedReadBooks) {
+      dispatch({
+        type: 'LOAD_STATE',
+        payload: {
+          favoriteBooks: storedFavorites ? JSON.parse(storedFavorites) : [],
+          readBooks: storedReadBooks ? JSON.parse(storedReadBooks) : []
+        }
+      });
+    }
+  }, []);
+
+  // Save state to localStorage
+  useEffect(() => {
+    localStorage.setItem('favoriteBooks', JSON.stringify(state.favoriteBooks));
+    localStorage.setItem('readBooks', JSON.stringify(state.readBooks));
+  }, [state.favoriteBooks, state.readBooks]);
+
   return (
     <GlobalStateContext.Provider value={{ state, dispatch }}>
       {children}

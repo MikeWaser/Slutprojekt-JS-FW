@@ -1,33 +1,68 @@
-// src/components/BookItem.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useGlobalState } from '../../context/GlobalStateProvider';
+import { Book } from '../../types';
 
 interface BookItemProps {
-  book: any;
+  book: Book;
+  isFavorite?: boolean;
 }
 
-const BookItem: React.FC<BookItemProps> = ({ book }) => {
-  const { state, dispatch } = useGlobalState();
-
-  const isFavorite = state.favoriteBooks.some(favBook => favBook.id === book.key);
+const BookItem: React.FC<BookItemProps> = ({ book, isFavorite = false }) => {
+  const { dispatch } = useGlobalState();
+  const [showMore, setShowMore] = useState(false);
 
   const toggleFavorite = () => {
     if (isFavorite) {
       dispatch({ type: 'REMOVE_FAVORITE', payload: book.key });
     } else {
-      dispatch({ type: 'ADD_FAVORITE', payload: { id: book.key, title: book.title, author: book.author_name?.join(', ') } });
+      dispatch({
+        type: 'ADD_FAVORITE',
+        payload: {
+          key: book.key,
+          title: book.title,
+          author_name: book.author_name,
+          cover_i: book.cover_i,
+        },
+      });
     }
   };
 
+  const addToRead = () => {
+    dispatch({
+      type: 'ADD_READ_BOOK',
+      payload: {
+        key: book.key,
+        title: book.title,
+        author_name: book.author_name,
+        cover_i: book.cover_i,
+      },
+    });
+  };
+
+  const coverUrl = book.cover_i
+    ? `http://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`
+    : 'https://via.placeholder.com/100';
+
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
+
   return (
-    <div>
-      <h3>{book.title}</h3>
-      <p>{book.author_name?.join(', ')}</p>
-      <Link to={`/book/${book.key}`}>View Details</Link>
-      <button onClick={toggleFavorite}>
-        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+    <div className="book-item">
+      <img src={coverUrl} alt={book.title} />
+      <h3 className="book-item-title">{book.title}</h3>
+      <p className={`book-item-authors ${showMore ? 'show-more' : ''}`}>{book.author_name.join(', ')}</p>
+      {book.author_name.join(', ').length > 50 && (
+        <button className="more-button" onClick={toggleShowMore}>
+          {showMore ? 'Less' : 'More'}
+        </button>
+      )}
+      <Link className="book-item-details-link" to={`/book/${book.key}`}>View Details</Link>
+      <button className="book-item-button" onClick={toggleFavorite}>
+        {isFavorite ? 'Remove' : 'Add to Favorites'}
       </button>
+      <button className="book-item-button" onClick={addToRead}>Add to Read</button>
     </div>
   );
 };

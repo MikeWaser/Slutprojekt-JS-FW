@@ -11,7 +11,7 @@ const ReadBooksPage: React.FC = () => {
       {state.readBooks.length === 0 ? (
         <p>No read books.</p>
       ) : (
-        <BookList books={state.readBooks} />
+        <BookList books={state.readBooks} isReadList={true} />
       )}
     </div>
   );

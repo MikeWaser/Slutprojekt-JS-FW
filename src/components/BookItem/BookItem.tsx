@@ -6,16 +6,23 @@ import { Book } from '../../types';
 interface BookItemProps {
   book: Book;
   isFavorite?: boolean;
+  isRead?: boolean;
 }
 
-const BookItem: React.FC<BookItemProps> = ({ book, isFavorite = false }) => {
+const BookItem: React.FC<BookItemProps> = ({ book, isFavorite = false, isRead = false }) => {
   const { dispatch } = useGlobalState();
   const [showMore, setShowMore] = useState(false);
+  const [animationClass, setAnimationClass] = useState('');
 
   const toggleFavorite = () => {
     if (isFavorite) {
-      dispatch({ type: 'REMOVE_FAVORITE', payload: book.key });
+      setAnimationClass('fade-out');
+      setTimeout(() => {
+        dispatch({ type: 'REMOVE_FAVORITE', payload: book.key });
+        setAnimationClass('');
+      }, 300);
     } else {
+      setAnimationClass('fade-in');
       dispatch({
         type: 'ADD_FAVORITE',
         payload: {
@@ -28,28 +35,37 @@ const BookItem: React.FC<BookItemProps> = ({ book, isFavorite = false }) => {
     }
   };
 
-  const addToRead = () => {
-    dispatch({
-      type: 'ADD_READ_BOOK',
-      payload: {
-        key: book.key,
-        title: book.title,
-        author_name: book.author_name,
-        cover_i: book.cover_i,
-      },
-    });
+  const toggleRead = () => {
+    if (isRead) {
+      setAnimationClass('fade-out');
+      setTimeout(() => {
+        dispatch({ type: 'REMOVE_READ_BOOK', payload: book.key });
+        setAnimationClass('');
+      }, 300);
+    } else {
+      setAnimationClass('fade-in');
+      dispatch({
+        type: 'ADD_READ_BOOK',
+        payload: {
+          key: book.key,
+          title: book.title,
+          author_name: book.author_name,
+          cover_i: book.cover_i,
+        },
+      });
+    }
   };
 
   const coverUrl = book.cover_i
     ? `http://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`
-    : 'https://via.placeholder.com/100';
+    : 'https://via.placeholder.com/150';
 
   const toggleShowMore = () => {
     setShowMore(!showMore);
   };
 
   return (
-    <div className="book-item">
+    <div className={`book-item ${animationClass}`}>
       <img src={coverUrl} alt={book.title} />
       <h3 className="book-item-title">{book.title}</h3>
       <p className={`book-item-authors ${showMore ? 'show-more' : ''}`}>{book.author_name.join(', ')}</p>
@@ -58,11 +74,13 @@ const BookItem: React.FC<BookItemProps> = ({ book, isFavorite = false }) => {
           {showMore ? 'Less' : 'More'}
         </button>
       )}
-      <Link className="book-item-details-link" to={`/book/${book.key}`}>View Details</Link>
+      <Link className="details-button" to={`/book/${book.key}`}>View Details</Link>
       <button className="book-item-button" onClick={toggleFavorite}>
-        {isFavorite ? 'Remove' : 'Add to Favorites'}
+        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
       </button>
-      <button className="book-item-button" onClick={addToRead}>Add to Read</button>
+      <button className="book-item-button" onClick={toggleRead}>
+        {isRead ? 'Remove from Read' : 'Add to Read'}
+      </button>
     </div>
   );
 };

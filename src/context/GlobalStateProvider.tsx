@@ -21,6 +21,8 @@ const reducer = (state: State, action: Action): State => {
       return { ...state, favoriteBooks: state.favoriteBooks.filter(book => book.key !== action.payload) };
     case 'ADD_READ_BOOK':
       return { ...state, readBooks: [...state.readBooks, action.payload] };
+    case 'REMOVE_READ_BOOK':
+      return { ...state, readBooks: state.readBooks.filter(book => book.key !== action.payload) };
     default:
       return state;
   }

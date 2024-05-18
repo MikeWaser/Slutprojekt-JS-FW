@@ -11,7 +11,7 @@ const BookDetails: React.FC = () => {
 
   useEffect(() => {
     const fetchBookDetails = async () => {
-      if (id) { // Typbevakning
+      if (id) { // Ensure id is not undefined
         try {
           const data = await getBookDetails(id);
           setBook(data);
@@ -32,17 +32,18 @@ const BookDetails: React.FC = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
+  if (!book) return <p>No book details available</p>;
 
-  const coverUrl = book?.cover_i
+  const coverUrl = book.cover_i
     ? `http://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`
-    : 'https://via.placeholder.com/100';
+    : 'https://via.placeholder.com/150';
 
   return (
     <div className="book-details">
-      <h2>{book?.title}</h2>
-      <p>{book?.author_name.join(', ')}</p>
-      <img src={coverUrl} alt={book?.title} />
-      <p>{book?.description}</p>
+      <h2>{book.title}</h2>
+      <p>{book.author_name.join(', ')}</p>
+      <img src={coverUrl} alt={book.title} />
+      <p>{book.description}</p>
     </div>
   );
 };

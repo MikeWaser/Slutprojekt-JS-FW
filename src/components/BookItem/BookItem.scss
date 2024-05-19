@@ -45,7 +45,7 @@
     height: 250px;
     object-fit: cover;
     border-radius: 4px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   .book-item-title {
@@ -86,6 +86,7 @@
     align-self: center;
     width: 50%;
     color: #000000;
+    background-color: white;
     padding: 0.3rem;
     margin-top: 1rem;
     border-radius: 4px;
@@ -94,14 +95,16 @@
 
     &:hover {
       text-decoration: underline;
+      background-color: white;
     }
   }
 
   .book-item-button {
     background-color: #333;
-    color: #ffffff;
+    width: 100%;
+    color: #fff;
     border: none;
-    padding: 0.6rem;
+    padding: 0.5rem;
     margin-top: 0.5rem;
     border-radius: 4px;
     cursor: pointer;

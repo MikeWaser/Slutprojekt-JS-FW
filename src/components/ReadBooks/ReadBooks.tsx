@@ -1,5 +1,4 @@
 import React from 'react';
-import BookList from '../../components/BookList/BookList';
 import { useGlobalState } from '../../context/GlobalStateProvider';
 import './ReadBooksPage.scss';
 
@@ -13,7 +12,18 @@ const ReadBooksPage: React.FC = () => {
         <p>No read books.</p>
       ) : (
         <div className="read-books-list">
-          <BookList books={state.readBooks} isReadList={true} />
+          <div className="book-list">
+            {state.readBooks.map(book => (
+              <div key={book.key} className="book-item">
+                <img
+                  src={`http://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`}
+                  alt={book.title}
+                />
+                <h3 className="book-item-title">{book.title}</h3>
+                <p className="book-item-authors">{book.author_name.join(', ')}</p>
+              </div>
+            ))}
+          </div>
           <div className="read-books-details">
             {state.readBooks.map(book => (
               <div key={book.key} className="book-details">

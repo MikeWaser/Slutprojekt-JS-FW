@@ -35,6 +35,7 @@ const Popup: React.FC<PopupProps> = ({ onSave, onClose }) => {
           Pages:
           <input
             type="number"
+            min="0"
             value={pages}
             onChange={(e) => setPages(parseInt(e.target.value))}
           />

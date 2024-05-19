@@ -1,11 +1,11 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './Pages/HomePage/HomePage';
-import FavoritesPage from './Pages/FavoritesPage/FavoritesPage';
-import ReadBooksPage from './Pages/ReadBooksPage/ReadBooksPage';
-import BookDetails from './components/BookDetails/BookDetails';
-import { GlobalStateProvider } from './context/GlobalStateProvider';
-import NavBar from './components/Navbar/Navbar';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./Pages/HomePage/HomePage";
+import FavoritesPage from "./Pages/FavoritesPage/FavoritesPage";
+import ReadBooksPage from "./Pages/ReadBooksPage/ReadBooksPage";
+import BookDetails from "./components/BookDetails/BookDetails";
+import { GlobalStateProvider } from "./context/GlobalStateProvider";
+import NavBar from "./components/Navbar/Navbar";
 
 const App: React.FC = () => {
   return (
@@ -24,3 +24,13 @@ const App: React.FC = () => {
 };
 
 export default App;
+
+/* import React from 'react';
+import AppRouter from './router';
+
+const App: React.FC = () => {
+  return <AppRouter />;
+};
+
+export default App;
+ */

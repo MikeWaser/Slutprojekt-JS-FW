@@ -1,7 +1,9 @@
 import React from 'react';
+import BookList from '../../components/BookList/BookList';
 import { useGlobalState } from '../../context/GlobalStateProvider';
+import './ReadBooksPage.scss';
 
-const ReadBooks: React.FC = () => {
+const ReadBooksPage: React.FC = () => {
   const { state } = useGlobalState();
 
   return (
@@ -10,18 +12,22 @@ const ReadBooks: React.FC = () => {
       {state.readBooks.length === 0 ? (
         <p>No read books.</p>
       ) : (
-        state.readBooks.map((book) => (
-          <div key={book.id} className="book-item">
-            <h3>{book.title}</h3>
-            <p>{book.author}</p>
-            <p><strong>Rating:</strong> {book.rating}</p>
-            <p><strong>Review:</strong> {book.review}</p>
-            <p><strong>Pages:</strong> {book.pages}</p>
+        <div className="read-books-list">
+          <BookList books={state.readBooks} isReadList={true} />
+          <div className="read-books-details">
+            {state.readBooks.map(book => (
+              <div key={book.key} className="book-details">
+                <h3>{book.title}</h3>
+                <p>Rating: {book.rating}</p>
+                <p>Pages: {book.pages}</p>
+                <p>Review: {book.review}</p>
+              </div>
+            ))}
           </div>
-        ))
+        </div>
       )}
     </div>
   );
 };
 
-export default ReadBooks;
+export default ReadBooksPage;

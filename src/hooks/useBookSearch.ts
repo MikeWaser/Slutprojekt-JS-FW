@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
+import { Book } from '../types';
 import { searchBooks } from '../utils/api';
 
-const useBookSearch = (query: string) => {
-  const [books, setBooks] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
+const useBookSearch = (query: string, page: number, pageSize: number) => {
+  const [books, setBooks] = useState<Book[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -12,17 +13,21 @@ const useBookSearch = (query: string) => {
     const fetchBooks = async () => {
       setLoading(true);
       try {
-        const data = await searchBooks(query);
-        setBooks(data.docs);
+        const response = await searchBooks(query, page, pageSize);
+        if (page === 1) {
+          setBooks(response.docs);
+        } else {
+          setBooks(prevBooks => [...prevBooks, ...response.docs]);
+        }
       } catch (err) {
-        setError(err.message);
+        setError('Failed to fetch books');
       } finally {
         setLoading(false);
       }
     };
 
     fetchBooks();
-  }, [query]);
+  }, [query, page, pageSize]);
 
   return { books, loading, error };
 };

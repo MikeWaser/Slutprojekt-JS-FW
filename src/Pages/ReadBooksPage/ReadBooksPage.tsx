@@ -1,4 +1,5 @@
 import React from 'react';
+import "./ReadBooksPage.scss"
 import BookList from '../../components/BookList/BookList';
 import { useGlobalState } from '../../context/GlobalStateProvider';
 

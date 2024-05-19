@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getBookDetails } from '../../utils/api';
 import { Book } from '../../types';
+import './BookDetails.scss';
 
 const BookDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -11,7 +12,7 @@ const BookDetails: React.FC = () => {
 
   useEffect(() => {
     const fetchBookDetails = async () => {
-      if (id) { // Ensure id is not undefined
+      if (id) {
         try {
           const data = await getBookDetails(id);
           setBook(data);
@@ -36,7 +37,7 @@ const BookDetails: React.FC = () => {
 
   const coverUrl = book.cover_i
     ? `http://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`
-    : 'https://via.placeholder.com/150';
+    : 'https://via.placeholder.com/50';
 
   return (
     <div className="book-details">

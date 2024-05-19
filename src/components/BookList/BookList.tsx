@@ -1,4 +1,5 @@
 import React from 'react';
+import "./BookList.scss"
 import BookItem from './../BookItem/BookItem';
 import { Book } from '../../types';
 

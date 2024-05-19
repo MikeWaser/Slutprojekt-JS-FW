@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useContext, ReactNode, useEffect } from 'react';
-import { State, Action } from '../types';
+import { State, Action, ReadBook } from '../types';
 
-const GlobalStateContext = createContext<{
+export const GlobalStateContext = createContext<{
   state: State;
   dispatch: React.Dispatch<Action>;
 } | undefined>(undefined);

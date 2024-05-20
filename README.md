@@ -11,12 +11,12 @@ Welcome to Mikes Library! This app allows users to search for books using the Op
 
 ## Tech Stack
 
-- **React**: A JavaScript library for building user interfaces.
-- **TypeScript**: A typed superset of JavaScript that compiles to plain JavaScript.
-- **Vite**: A build tool that aims to provide a faster and leaner development experience for modern web projects.
-- **Axios**: A promise-based HTTP client for the browser and Node.js.
-- **SCSS**: A preprocessor scripting language that is interpreted or compiled into CSS.
-- **React Router**: A collection of navigational components that compose declaratively with your application.
+- **React**
+- **TypeScript**
+- **Vite**
+- **Axios**
+- **SCSS**
+- **React Router**
 
 ## Setup and Installation
 

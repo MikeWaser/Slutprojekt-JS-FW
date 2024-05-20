@@ -37,7 +37,7 @@ const BookDetails: React.FC = () => {
 
   const coverUrl = book.cover_i
     ? `http://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`
-    : 'https://via.placeholder.com/50';
+    : 'https://via.placeholder.com/150';
 
   return (
     <div className="book-details">

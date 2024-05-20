@@ -9,7 +9,7 @@
 
 h1 {
   text-align: center;
-  color: #333;
+  color: #000000;
 }
 
 .read-books-list {
@@ -27,4 +27,20 @@ h1 {
 
 .book-details h3 {
   margin-top: 0;
+}
+
+.remove-book-button {
+    background-color: #252525;
+    width: 100%;
+    color: #fff;
+    border: none;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 0rem;
+
+    &:hover {
+      background-color: #020202;
+    }
 }

@@ -22,7 +22,6 @@ const BookDetailsPopup: React.FC<BookDetailsPopupProps> = ({ book, onClose }) =>
             <h3>{book.title}</h3>
             <p><strong>Author(s):</strong> {book.author_name.join(', ')}</p>
             <p><strong>Genre:</strong> {book.subject?.join(', ') || 'N/A'}</p>
-            <p><strong>Length:</strong> {book.number_of_pages || 'N/A'} pages</p>
             <p><strong>Description:</strong> {book.first_sentence || 'N/A'}</p>
           </div>
         </div>

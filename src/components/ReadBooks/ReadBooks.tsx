@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { useGlobalState } from '../../context/GlobalStateProvider';
 import './ReadBooksPage.scss';
 
@@ -28,9 +28,9 @@ const ReadBooksPage: React.FC = () => {
             {state.readBooks.map(book => (
               <div key={book.key} className="book-details">
                 <h3>{book.title}</h3>
-                <p>Rating: {book.rating}</p>
-                <p>Pages: {book.pages}</p>
-                <p>Review: {book.review}</p>
+                <p><strong >Rating:</strong> {book.rating}/10</p>
+                <p><strong >Pages:</strong> {book.pages}</p>
+                <p><strong >Comment:</strong> {book.review}</p>
               </div>
             ))}
           </div>
@@ -41,3 +41,4 @@ const ReadBooksPage: React.FC = () => {
 };
 
 export default ReadBooksPage;
+ */

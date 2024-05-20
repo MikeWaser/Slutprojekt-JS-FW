@@ -31,15 +31,18 @@ Follow these steps to set up and run the project locally.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/booknerds-library.git
+   git clone https://github.com/MikeWaser/Slutprojekt-JS-FW
    
 2. **Navigate to the project directory:**
+3. ```bash
     cd Slutprojekt-JS-FW
 
-3. **Install the dependencies:**
+4. **Install the dependencies:**
+5. ```bash
     npm install
 
-4. Run the development server:
+6. Run the development server:
+7. ```bash
     npm run dev
 
 ### Project Structure

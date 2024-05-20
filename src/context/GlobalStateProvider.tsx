@@ -31,7 +31,7 @@ const reducer = (state: State, action: Action): State => {
 export const GlobalStateProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // Load state from localStorage
+  // Laddar state från localStorage
   useEffect(() => {
     const storedFavorites = localStorage.getItem('favoriteBooks');
     const storedReadBooks = localStorage.getItem('readBooks');
@@ -46,7 +46,7 @@ export const GlobalStateProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  // Save state to localStorage
+  // Sparar state till localStorage
   useEffect(() => {
     localStorage.setItem('favoriteBooks', JSON.stringify(state.favoriteBooks));
     localStorage.setItem('readBooks', JSON.stringify(state.readBooks));

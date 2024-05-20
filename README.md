@@ -89,10 +89,10 @@ Slutprojekt-JS-FW/
 │   │   │   └── FavoritesPage.tsx
 │   │   ├── HomePage/
 │   │   │   ├── HomePage.scss
-│   │   │    └── HomePage.tsx
+│   │   │   └── HomePage.tsx
 │   │   ├── ReadBooksPage/
-│   │   │    ├── ReadBooksPage.scss
-│   │   │    └── ReadBooksPage.tsx
+│   │   │   ├── ReadBooksPage.scss
+│   │   │   └── ReadBooksPage.tsx
 │   ├── styles/
 │   │   ├── scss/
 │   │   │   ├── _reset.scss

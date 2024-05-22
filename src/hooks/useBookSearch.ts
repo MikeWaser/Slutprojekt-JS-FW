@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { Book } from '../types';
-import { searchBooks } from '../utils/api';
+import { useState, useEffect } from "react";
+import { Book } from "../types";
+import { searchBooks } from "../utils/api";
 
 const useBookSearch = (query: string, page: number, pageSize: number) => {
   const [books, setBooks] = useState<Book[]>([]);
@@ -17,10 +17,10 @@ const useBookSearch = (query: string, page: number, pageSize: number) => {
         if (page === 1) {
           setBooks(response.docs);
         } else {
-          setBooks(prevBooks => [...prevBooks, ...response.docs]);
+          setBooks((prevBooks) => [...prevBooks, ...response.docs]);
         }
       } catch (err) {
-        setError('Failed to fetch books');
+        setError("Failed to fetch books");
       } finally {
         setLoading(false);
       }

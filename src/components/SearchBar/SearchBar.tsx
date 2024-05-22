@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import "./SearchBar.scss"
+import { SearchBarProps } from '../../types';
 
-interface SearchBarProps {
-  onSearch: (query: string) => void;
-}
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [query, setQuery] = useState<string>('');

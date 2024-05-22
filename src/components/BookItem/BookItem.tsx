@@ -1,15 +1,9 @@
-import React, { useState } from 'react';
-import { useGlobalState } from '../../context/GlobalStateProvider';
-import { Book, ReadBook } from '../../types';
-import Popup from '../ReviewPopup/ReviewPopup';
-import BookDetailsPopup from '../DetailsPopup/DetailsPopup';
-import './BookItem.scss';
-
-interface BookItemProps {
-  book: Book;
-  isFavorite?: boolean;
-  isRead?: boolean;
-}
+import React, { useState } from "react";
+import { useGlobalState } from "../../context/GlobalStateProvider";
+import { ReadBook, BookItemProps } from "../../types";
+import Popup from "../ReviewPopup/ReviewPopup";
+import BookDetailsPopup from "../DetailsPopup/DetailsPopup";
+import "./BookItem.scss";
 
 const BookItem: React.FC<BookItemProps> = ({
   book,
@@ -109,7 +103,10 @@ const BookItem: React.FC<BookItemProps> = ({
         />
       )}
       {showDetailsPopup && (
-        <BookDetailsPopup book={book} onClose={() => setShowDetailsPopup(false)} />
+        <BookDetailsPopup
+          book={book}
+          onClose={() => setShowDetailsPopup(false)}
+        />
       )}
     </div>
   );

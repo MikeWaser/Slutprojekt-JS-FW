@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import './ReviewPopup.scss';
+import { PopupProps } from '../../types';
 
-interface PopupProps {
-  bookId: string;
-  onSave: (rating: number, pages: number, review: string) => void;
-  onClose: () => void;
-}
 
 const Popup: React.FC<PopupProps> = ({ onSave, onClose }) => {
   const [rating, setRating] = useState<number>(1);

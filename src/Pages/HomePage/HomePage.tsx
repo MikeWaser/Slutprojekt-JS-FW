@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import SearchBar from '../../components/SearchBar/SearchBar';
-import BookList from '../../components/BookList/BookList';
-import useBookSearch from '../../hooks/useBookSearch';
-import './HomePage.scss';
+import React, { useState } from "react";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import BookList from "../../components/BookList/BookList";
+import useBookSearch from "../../hooks/useBookSearch";
+import "./HomePage.scss";
 
 const HomePage: React.FC = () => {
-  const [query, setQuery] = useState<string>('');
+  const [query, setQuery] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const pageSize = 50;
   const { books, loading, error } = useBookSearch(query, page, pageSize);
@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
   };
 
   const loadMoreBooks = () => {
-    setPage(prevPage => prevPage + 1);
+    setPage((prevPage) => prevPage + 1);
   };
 
   return (

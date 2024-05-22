@@ -1,13 +1,8 @@
 import React from 'react';
 import "./BookList.scss"
 import BookItem from './../BookItem/BookItem';
-import { Book } from '../../types';
+import { BookListProps } from '../../types';
 
-interface BookListProps {
-  books: Book[];
-  isFavoriteList?: boolean;
-  isReadList?: boolean;
-}
 
 const BookList: React.FC<BookListProps> = ({ books, isFavoriteList = false, isReadList = false }) => (
   <div className="book-list">

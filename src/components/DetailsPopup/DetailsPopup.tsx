@@ -1,11 +1,7 @@
 import React from 'react';
 import './DetailsPopup.scss';
-import { Book } from '../../types';
+import { BookDetailsPopupProps } from '../../types';
 
-interface BookDetailsPopupProps {
-  book: Book;
-  onClose: () => void;
-}
 
 const BookDetailsPopup: React.FC<BookDetailsPopupProps> = ({ book, onClose }) => {
   const coverUrl = book.cover_i
